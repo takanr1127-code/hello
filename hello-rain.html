@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hello Rain</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow: hidden; background: #12121c; font-family: Arial, sans-serif; }
+    .hello {
+      position: fixed;
+      top: 0;
+      left: var(--left);
+      font-size: var(--size);
+      font-weight: bold;
+      user-select: none;
+      pointer-events: none;
+      background: linear-gradient(90deg, #ff6060, #ffab40, #ffe761, #65df85, #65cfff, #8c8cff, #db85ff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      transform: translateY(-120%);
+      animation: fall var(--duration) linear var(--delay) infinite;
+    }
+    @keyframes fall {
+      from { transform: translateY(-120%) rotate(-10deg); opacity: 0; }
+      10% { opacity: 1; }
+      85% { opacity: 1; }
+      to { transform: translateY(110vh) rotate(10deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    const count = 25;
+    for (let i = 0; i < count; i++) {
+      const text = document.createElement("span");
+      text.className = "hello";
+      text.textContent = "hello";
+      text.setAttribute("aria-hidden", "true");
+      text.style.setProperty("--left", `${Math.random() * 85}vw`);
+      text.style.setProperty("--size", `${24 + Math.random() * 48}px`);
+      text.style.setProperty("--duration", `${4 + Math.random() * 6}s`);
+      text.style.setProperty("--delay", `${Math.random() * 5}s`);
+      document.body.appendChild(text);
+    }
+  </script>
+</body>
+</html>
